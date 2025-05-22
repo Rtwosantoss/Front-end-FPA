@@ -12,12 +12,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="p in produtos" :key="p.id">
-              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">1</td>
-              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">air fryer</td>
-              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">299.00</td>
-              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">eletrodomesticos</td>
-              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">100</td>
+            <tr v-for="produto in produtos" :key="produto.id">
+              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">{{ produto.id }}</td>
+              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">{{ produto.nome }}</td>
+              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">{{ produto.preco }}</td>
+              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">{{ produto.categoria }}</td>
+              <td class="px-10 py-5 border-r border-b border-blue-400 dark:border-blue-700 py-5">{{ produto.quantidadeVenda }}</td>
             </tr>
           </tbody>
         </table>
@@ -37,12 +37,13 @@ const produtos = ref([])
 const offset = ref(0) 
 const limit = 20
 
-const fetchProduto = async function () => {
+const fetchProduto = async () => {
   const response = await axios.get(`https://localhost:7256/v1/produtos`)
   const results = response.data
+  produtos.value =results
   console.log(results);
-  
 }
+
 
 
 
